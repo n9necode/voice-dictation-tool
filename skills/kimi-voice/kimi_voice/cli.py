@@ -72,7 +72,7 @@ def run_json(raw: str) -> int:
 def run_text(turns: int | None) -> int:
     settings = Settings.from_env()
     client = KimiClient(settings)
-    print("Kimi Voice (typed). Say stop to end.", flush=True)
+    print("Voice Dictation Tool (typed). Say stop to end.", flush=True)
     converse(
         client,
         PromptListener(),
@@ -86,7 +86,7 @@ def run_text(turns: int | None) -> int:
 def run_voice(turns: int | None) -> int:
     settings = Settings.from_env()
     client = KimiClient(settings)
-    print("Kimi Voice. Speak after the prompt. Say stop to end.", flush=True)
+    print("Voice Dictation Tool. Speak after the prompt. Say stop to end.", flush=True)
     converse(
         client,
         default_listener(),

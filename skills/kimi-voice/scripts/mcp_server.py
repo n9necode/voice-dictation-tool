@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MCP stdio server for the Kimi Voice plugin."""
+"""MCP stdio server for the Voice Dictation Tool plugin."""
 
 from __future__ import annotations
 

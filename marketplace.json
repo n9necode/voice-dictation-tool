@@ -3,7 +3,7 @@
   "plugins": [
     {
       "id": "kimi-voice",
-      "displayName": "Kimi Voice",
+      "displayName": "Voice Dictation Tool",
       "source": "."
     }
   ]

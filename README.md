@@ -1,4 +1,4 @@
-# Kimi Voice
+# Voice Dictation Tool
 
 A Python voice plugin for the Kimi K3 model. You talk, it listens, streams a short reply from `kimi-k3`, and speaks it back.
 

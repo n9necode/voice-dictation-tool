@@ -1,9 +1,9 @@
 ---
 name: kimi-voice
-description: Spoken conversation with the Kimi K3 model. Listens through the microphone, streams a short reply from kimi-k3, and speaks it back. Use when the user wants to talk out loud, dictate, hear a reply, or install the Kimi voice skill.
+description: Spoken conversation with the Kimi K3 model. Listens through the microphone, streams a short reply from kimi-k3, and speaks it back. Use when the user wants to talk out loud, dictate, hear a reply, or install the Voice Dictation Tool skill.
 ---
 
-# Kimi Voice
+# Voice Dictation Tool
 
 Talk with Kimi K3 the way you would talk with a person. Speech stays on this machine. Only the transcript goes to the Moonshot API.
 

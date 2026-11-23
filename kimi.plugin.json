@@ -15,7 +15,7 @@
     }
   },
   "interface": {
-    "displayName": "Kimi Voice",
+    "displayName": "Voice Dictation Tool",
     "shortDescription": "Spoken conversation with Kimi K3",
     "longDescription": "Listens through the microphone, streams a short reply from kimi-k3, and speaks it back. Install the folder or the skill zip, set MOONSHOT_API_KEY, then say stop when you are done.",
     "developerName": "demar"
