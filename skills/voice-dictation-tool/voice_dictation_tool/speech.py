@@ -10,26 +10,43 @@ import subprocess
 import sys
 from collections.abc import Iterable
 
+from voice_dictation_tool.config import Settings
 from voice_dictation_tool.errors import ListenEnded, ListenError, SpeechError
 
-SAPI_SPEAK = r"""
-[Console]::InputEncoding = [System.Text.Encoding]::UTF8
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-Add-Type -AssemblyName System.Speech
-$synth = New-Object System.Speech.Synthesis.SpeechSynthesizer
-$text = [Console]::In.ReadToEnd()
-if (-not [string]::IsNullOrWhiteSpace($text)) { $synth.Speak($text) }
-"""
+def sapi_speak_script(lang: str = "") -> str:
+    voice_line = ""
+    if lang:
+        voice_line = (
+            "$null = $synth.SelectVoiceByHints([System.Speech.Synthesis.VoiceGender]::Unknown, "
+            "[System.Speech.Synthesis.VoiceAge]::NotSet, 0, "
+            f'[System.Globalization.CultureInfo]::GetCultureInfo("{lang}"))\n'
+        )
+    return (
+        "[Console]::InputEncoding = [System.Text.Encoding]::UTF8\n"
+        "[Console]::OutputEncoding = [System.Text.Encoding]::UTF8\n"
+        "Add-Type -AssemblyName System.Speech\n"
+        "$synth = New-Object System.Speech.Synthesis.SpeechSynthesizer\n"
+        f"{voice_line}"
+        "$text = [Console]::In.ReadToEnd()\n"
+        "if (-not [string]::IsNullOrWhiteSpace($text)) { $synth.Speak($text) }\n"
+    )
 
 
-def sapi_listen_script(timeout: float) -> str:
+def sapi_listen_script(timeout: float, lang: str = "") -> str:
     seconds = float(timeout)
     if seconds <= 0 or seconds > 120:
         raise ListenError("Listen timeout must be between 0 and 120 seconds.")
+    if lang:
+        engine_line = (
+            "$engine = New-Object System.Speech.Recognition.SpeechRecognitionEngine("
+            f'[System.Globalization.CultureInfo]::GetCultureInfo("{lang}"))'
+        )
+    else:
+        engine_line = "$engine = New-Object System.Speech.Recognition.SpeechRecognitionEngine"
     return f"""
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 Add-Type -AssemblyName System.Speech
-$engine = New-Object System.Speech.Recognition.SpeechRecognitionEngine
+{engine_line}
 $engine.LoadGrammar((New-Object System.Speech.Recognition.DictationGrammar))
 $engine.SetInputToDefaultAudioDevice()
 $engine.InitialSilenceTimeout = [TimeSpan]::FromSeconds({seconds:.1f})
@@ -54,20 +71,26 @@ def run_powershell(script: str, *, input_text: str | None, timeout: float) -> su
 
 
 class WindowsSapiSpeaker:
+    def __init__(self, lang: str = ""):
+        self.lang = lang
+
     def speak(self, text: str) -> None:
         cleaned = text.strip()
         if not cleaned:
             return
-        completed = run_powershell(SAPI_SPEAK, input_text=cleaned, timeout=120)
+        completed = run_powershell(sapi_speak_script(self.lang), input_text=cleaned, timeout=120)
         if completed.returncode != 0:
             detail = completed.stderr.decode("utf-8", errors="replace").strip()
             raise SpeechError(detail or "Windows could not speak that text.")
 
 
 class WindowsSapiListener:
+    def __init__(self, lang: str = ""):
+        self.lang = lang
+
     def listen(self, timeout: float = 12) -> str:
         completed = run_powershell(
-            sapi_listen_script(timeout),
+            sapi_listen_script(timeout, self.lang),
             input_text=None,
             timeout=timeout + 15,
         )
@@ -153,7 +176,7 @@ class TeeSpeaker:
 
 def default_listener():
     if sys.platform == "win32":
-        return WindowsSapiListener()
+        return WindowsSapiListener(lang=Settings.from_env().lang)
     raise ListenError(
         "This system has no built-in microphone backend. Run with --text, "
         "or pass lines into the converse tool."
@@ -162,7 +185,7 @@ def default_listener():
 
 def default_speaker():
     if sys.platform == "win32":
-        return WindowsSapiSpeaker()
+        return WindowsSapiSpeaker(lang=Settings.from_env().lang)
     raise SpeechError(
         "This system has no built-in speaker backend. Run with --text."
     )

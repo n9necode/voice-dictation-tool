@@ -12,6 +12,23 @@ from voice_dictation_tool.stream import new_history
 TOOLS = ("listen", "speak", "ask", "converse")
 
 
+def _as_float(value, name: str) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError) as exc:
+        raise ConfigError(f"{name} must be a number, got {value!r}.") from exc
+
+
+def _as_int(value, name: str) -> int:
+    try:
+        result = int(value)
+    except (TypeError, ValueError) as exc:
+        raise ConfigError(f"{name} must be an integer, got {value!r}.") from exc
+    if isinstance(value, float) and value != result:
+        raise ConfigError(f"{name} must be an integer, got {value!r}.")
+    return result
+
+
 def dispatch(payload: dict, *, client=None, listener=None, speaker=None, env=None) -> dict:
     if not isinstance(payload, dict):
         return {"ok": False, "error": "Tool input must be a JSON object."}
@@ -23,14 +40,14 @@ def dispatch(payload: dict, *, client=None, listener=None, speaker=None, env=Non
         }
     try:
         return _run(name, payload, client=client, listener=listener, speaker=speaker, env=env)
-    except KimiVoiceError as exc:
+    except (KimiVoiceError, ValueError, TypeError) as exc:
         return {"ok": False, "error": str(exc)}
 
 
 def _run(name: str, payload: dict, *, client, listener, speaker, env) -> dict:
     if name == "listen":
         ear = listener or default_listener()
-        timeout = float(payload.get("timeout", 12))
+        timeout = _as_float(payload.get("timeout", 12), "timeout")
         return {"ok": True, "text": ear.listen(timeout)}
 
     if name == "speak":
@@ -69,7 +86,7 @@ def _run(name: str, payload: dict, *, client, listener, speaker, env) -> dict:
         ear,
         voice,
         new_history(),
-        max_turns=None if turns is None else int(turns),
+        max_turns=None if turns is None else _as_int(turns, "turns"),
     )
     public_turns = [
         {"user": turn["user"], "reply": turn["reply"], "stopped": turn["stopped"]}

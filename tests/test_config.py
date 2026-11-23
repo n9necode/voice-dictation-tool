@@ -39,6 +39,29 @@ class ConfigTests(unittest.TestCase):
             settings.require_api_key()
         self.assertIn("MOONSHOT_API_KEY", str(caught.exception))
 
+    def test_lang_defaults_to_empty(self):
+        self.assertEqual(Settings.from_env({}).lang, "")
+
+    def test_lang_from_env(self):
+        self.assertEqual(Settings.from_env({"KIMI_LANG": "zh-CN"}).lang, "zh-CN")
+
+    def test_dotenv_parser(self):
+        import tempfile
+        from pathlib import Path
+
+        from voice_dictation_tool.config import _parse_dotenv
+
+        with tempfile.TemporaryDirectory() as tmp:
+            env_file = Path(tmp) / ".env"
+            env_file.write_text(
+                "# comment\nKEY1=value1\nKEY2=\"quoted\"\n\nKEY3='single'\n",
+                encoding="utf-8",
+            )
+            self.assertEqual(
+                _parse_dotenv(env_file),
+                {"KEY1": "value1", "KEY2": "quoted", "KEY3": "single"},
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

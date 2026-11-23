@@ -2,7 +2,7 @@ import bootstrap  # noqa: F401
 
 import unittest
 
-from voice_dictation_tool.speech import ListSpeaker
+from voice_dictation_tool.speech import LineListener, ListSpeaker
 from voice_dictation_tool.stream import StreamPiece
 from voice_dictation_tool.tools import dispatch
 
@@ -52,6 +52,29 @@ class ToolTests(unittest.TestCase):
         result = dispatch({"tool": "sing"})
         self.assertFalse(result["ok"])
         self.assertIn("Unknown tool", result["error"])
+
+    def test_bad_timeout_returns_error_not_traceback(self):
+        result = dispatch({"tool": "listen", "timeout": "abc"}, listener=LineListener(["hi"]))
+        self.assertFalse(result["ok"])
+        self.assertIn("timeout", result["error"])
+
+    def test_bad_turns_returns_error_not_traceback(self):
+        result = dispatch(
+            {"tool": "converse", "turns": "abc", "lines": ["hi"]},
+            client=FakeClient("Hi."),
+            speaker=ListSpeaker(),
+        )
+        self.assertFalse(result["ok"])
+        self.assertIn("turns", result["error"])
+
+    def test_fractional_turns_are_rejected(self):
+        result = dispatch(
+            {"tool": "converse", "turns": 1.5, "lines": ["hi"]},
+            client=FakeClient("Hi."),
+            speaker=ListSpeaker(),
+        )
+        self.assertFalse(result["ok"])
+        self.assertIn("turns", result["error"])
 
 
 if __name__ == "__main__":

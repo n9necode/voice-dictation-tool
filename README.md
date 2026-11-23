@@ -13,11 +13,13 @@ cd C:\Users\newleaf888\kimi-voice
 copy .env.example .env
 ```
 
-Put your Moonshot key in `MOONSHOT_API_KEY`, then load it into the shell before you talk:
+Put your Moonshot key in `MOONSHOT_API_KEY` inside `.env`. The plugin loads `.env` automatically (existing environment variables win):
 
-```powershell
-$env:MOONSHOT_API_KEY = "your-key"
+```text
+MOONSHOT_API_KEY=your-key
 ```
+
+Optional: set `KIMI_LANG` to a BCP-47 tag (e.g. `zh-CN`) to select the speech language. Leave it empty to use the system default voice.
 
 ## Talk
 
