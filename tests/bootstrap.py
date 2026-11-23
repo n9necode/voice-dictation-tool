@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-SKILL = Path(__file__).resolve().parents[1] / "skills" / "kimi-voice"
+SKILL = Path(__file__).resolve().parents[1] / "skills" / "voice-dictation-tool"
 ROOT = Path(__file__).resolve().parents[1]
 for entry in (SKILL, ROOT):
     text = str(entry)

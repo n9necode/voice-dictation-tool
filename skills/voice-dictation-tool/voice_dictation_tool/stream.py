@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 
-from kimi_voice.errors import KimiAPIError
+from voice_dictation_tool.errors import KimiAPIError
 
 STOP_PHRASES = {
     "stop",

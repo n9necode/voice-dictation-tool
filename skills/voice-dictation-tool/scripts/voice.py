@@ -9,7 +9,7 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SKILL_ROOT))
 
-from kimi_voice.cli import main  # noqa: E402
+from voice_dictation_tool.cli import main  # noqa: E402
 
 if __name__ == "__main__":
     raise SystemExit(main())

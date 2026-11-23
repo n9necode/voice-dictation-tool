@@ -22,13 +22,13 @@ $env:MOONSHOT_API_KEY = "your-key"
 ## Talk
 
 ```powershell
-python skills/kimi-voice/scripts/voice.py
+python skills/voice-dictation-tool/scripts/voice.py
 ```
 
 Typed conversation, no microphone:
 
 ```powershell
-python skills/kimi-voice/scripts/voice.py --text
+python skills/voice-dictation-tool/scripts/voice.py --text
 ```
 
 Say **stop**, **quit**, or **goodbye** to end.
@@ -38,19 +38,19 @@ Say **stop**, **quit**, or **goodbye** to end.
 ```text
 /plugins install C:\Users\newleaf888\kimi-voice
 /reload
-/skill:kimi-voice
+/skill:voice-dictation-tool
 ```
 
-Or `/kimi-voice:talk` to start a spoken turn.
+Or `/voice-dictation-tool:talk` to start a spoken turn.
 
 Build a zip you can hand someone:
 
 ```powershell
-$env:PYTHONPATH = "skills/kimi-voice"
-python -m kimi_voice.pack
+$env:PYTHONPATH = "skills/voice-dictation-tool"
+python -m voice_dictation_tool.pack
 ```
 
-That writes `dist/kimi-voice.zip`. Install the unzipped folder with `/plugins install`, or copy `skills/kimi-voice` to `~/.kimi/skills/kimi-voice`.
+That writes `dist/voice-dictation-tool.zip`. Install the unzipped folder with `/plugins install`, or copy `skills/voice-dictation-tool` to `~/.kimi/skills/voice-dictation-tool`.
 
 ## Tests
 

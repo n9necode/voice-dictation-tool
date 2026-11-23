@@ -10,7 +10,7 @@ import subprocess
 import sys
 from collections.abc import Iterable
 
-from kimi_voice.errors import ListenEnded, ListenError, SpeechError
+from voice_dictation_tool.errors import ListenEnded, ListenError, SpeechError
 
 SAPI_SPEAK = r"""
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8

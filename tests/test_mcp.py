@@ -4,13 +4,13 @@ import io
 import json
 import unittest
 
-from kimi_voice.mcp_server import handle, read_message, serve, write_message
+from voice_dictation_tool.mcp_server import handle, read_message, serve, write_message
 
 
 class McpTests(unittest.TestCase):
     def test_initialize_and_tool_list(self):
         started = handle({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}})
-        self.assertEqual(started["result"]["serverInfo"]["name"], "kimi-voice")
+        self.assertEqual(started["result"]["serverInfo"]["name"], "voice-dictation-tool")
         self.assertIsNone(handle({"jsonrpc": "2.0", "method": "notifications/initialized"}))
         listed = handle({"jsonrpc": "2.0", "id": 2, "method": "tools/list"})
         names = [tool["name"] for tool in listed["result"]["tools"]]

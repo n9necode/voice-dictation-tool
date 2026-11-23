@@ -2,7 +2,7 @@
   "version": "2",
   "plugins": [
     {
-      "id": "kimi-voice",
+      "id": "voice-dictation-tool",
       "displayName": "Voice Dictation Tool",
       "source": "."
     }

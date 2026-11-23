@@ -2,9 +2,9 @@ import bootstrap  # noqa: F401
 
 import unittest
 
-from kimi_voice.session import converse, take_turn
-from kimi_voice.speech import LineListener, ListSpeaker
-from kimi_voice.stream import StreamPiece, new_history
+from voice_dictation_tool.session import converse, take_turn
+from voice_dictation_tool.speech import LineListener, ListSpeaker
+from voice_dictation_tool.stream import StreamPiece, new_history
 
 
 class FakeClient:

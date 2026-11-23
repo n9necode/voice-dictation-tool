@@ -1,5 +1,5 @@
 {
-  "name": "kimi-voice",
+  "name": "voice-dictation-tool",
   "version": "0.1.0",
   "description": "Talk with Kimi K3 out loud. Speech stays on this machine; only the transcript is sent to the model.",
   "keywords": ["voice", "speech", "kimi-k3"],
@@ -8,9 +8,9 @@
   "skills": "./skills/",
   "commands": "./commands/",
   "mcpServers": {
-    "kimi-voice": {
+    "voice-dictation-tool": {
       "command": "python",
-      "args": ["./skills/kimi-voice/scripts/mcp_server.py"],
+      "args": ["./skills/voice-dictation-tool/scripts/mcp_server.py"],
       "cwd": "./"
     }
   },

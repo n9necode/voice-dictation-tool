@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 
-from kimi_voice.errors import ConfigError
+from voice_dictation_tool.errors import ConfigError
 
 EFFORTS = ("low", "high", "max")
 DEFAULT_BASE_URL = "https://api.moonshot.ai/v1"

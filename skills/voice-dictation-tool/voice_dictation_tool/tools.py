@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from kimi_voice.client import KimiClient
-from kimi_voice.config import Settings
-from kimi_voice.errors import ConfigError, KimiVoiceError
-from kimi_voice.session import converse
-from kimi_voice.speech import LineListener, ListSpeaker, default_listener, default_speaker
-from kimi_voice.stream import new_history
+from voice_dictation_tool.client import KimiClient
+from voice_dictation_tool.config import Settings
+from voice_dictation_tool.errors import ConfigError, KimiVoiceError
+from voice_dictation_tool.session import converse
+from voice_dictation_tool.speech import LineListener, ListSpeaker, default_listener, default_speaker
+from voice_dictation_tool.stream import new_history
 
 TOOLS = ("listen", "speak", "ask", "converse")
 

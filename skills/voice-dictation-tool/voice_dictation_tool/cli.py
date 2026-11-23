@@ -6,11 +6,11 @@ import argparse
 import json
 import sys
 
-from kimi_voice.client import KimiClient
-from kimi_voice.config import Settings
-from kimi_voice.errors import KimiVoiceError
-from kimi_voice.session import converse
-from kimi_voice.speech import (
+from voice_dictation_tool.client import KimiClient
+from voice_dictation_tool.config import Settings
+from voice_dictation_tool.errors import KimiVoiceError
+from voice_dictation_tool.session import converse
+from voice_dictation_tool.speech import (
     LineListener,
     PrintingSpeaker,
     PromptListener,
@@ -18,8 +18,8 @@ from kimi_voice.speech import (
     default_listener,
     default_speaker,
 )
-from kimi_voice.stream import new_history
-from kimi_voice.tools import dispatch
+from voice_dictation_tool.stream import new_history
+from voice_dictation_tool.tools import dispatch
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -30,7 +30,7 @@ def main(argv: list[str] | None = None) -> int:
         return run_json(args[0])
 
     parser = argparse.ArgumentParser(
-        prog="kimi-voice",
+        prog="voice-dictation-tool",
         description="Talk with Kimi K3. Speech stays local; the transcript goes to the model.",
     )
     parser.add_argument(

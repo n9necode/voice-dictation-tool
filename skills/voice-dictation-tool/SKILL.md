@@ -1,5 +1,5 @@
 ---
-name: kimi-voice
+name: voice-dictation-tool
 description: Spoken conversation with the Kimi K3 model. Listens through the microphone, streams a short reply from kimi-k3, and speaks it back. Use when the user wants to talk out loud, dictate, hear a reply, or install the Voice Dictation Tool skill.
 ---
 
@@ -18,23 +18,23 @@ Optional: `KIMI_MODEL`, `KIMI_REASONING_EFFORT` (`low`, `high`, `max`), `MOONSHO
 From the plugin root:
 
 ```bash
-python skills/kimi-voice/scripts/voice.py
+python skills/voice-dictation-tool/scripts/voice.py
 ```
 
 Type instead of using the microphone:
 
 ```bash
-python skills/kimi-voice/scripts/voice.py --text
+python skills/voice-dictation-tool/scripts/voice.py --text
 ```
 
 Say "stop", "quit", or "goodbye" as the whole utterance to end.
 
 ## Tools
 
-Use the `kimi-voice` MCP tools when they are available. Otherwise pass one JSON object to the script. On PowerShell:
+Use the `voice-dictation-tool` MCP tools when they are available. Otherwise pass one JSON object to the script. On PowerShell:
 
 ```powershell
-'{"tool":"ask","text":"What is 1+1?","speak":true}' | python skills/kimi-voice/scripts/voice.py
+'{"tool":"ask","text":"What is 1+1?","speak":true}' | python skills/voice-dictation-tool/scripts/voice.py
 ```
 
 | Tool | Input | Result |
@@ -48,6 +48,6 @@ Speak the reply only. Never speak `reasoning_content` or the API key. Keep repli
 
 ## Install
 
-Kimi Code: `/plugins install` this folder, then `/reload`. Load it with `/skill:kimi-voice` or `/kimi-voice:talk`.
+Kimi Code: `/plugins install` this folder, then `/reload`. Load it with `/skill:voice-dictation-tool` or `/voice-dictation-tool:talk`.
 
-Skill download: unzip `dist/kimi-voice.zip` and install that folder the same way. Copy `skills/kimi-voice` to `~/.kimi/skills/kimi-voice` if you only need the skill files.
+Skill download: unzip `dist/voice-dictation-tool.zip` and install that folder the same way. Copy `skills/voice-dictation-tool` to `~/.kimi/skills/voice-dictation-tool` if you only need the skill files.

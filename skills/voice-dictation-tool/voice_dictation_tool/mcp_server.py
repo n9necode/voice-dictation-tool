@@ -6,8 +6,8 @@ import json
 import sys
 from collections.abc import Callable
 
-from kimi_voice import __version__
-from kimi_voice.tools import TOOLS, dispatch
+from voice_dictation_tool import __version__
+from voice_dictation_tool.tools import TOOLS, dispatch
 
 PROTOCOL = "2024-11-05"
 
@@ -88,7 +88,7 @@ def handle(message: dict, call_tool: Callable[[str, dict], dict] | None = None) 
             {
                 "protocolVersion": PROTOCOL,
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "kimi-voice", "version": __version__},
+                "serverInfo": {"name": "voice-dictation-tool", "version": __version__},
             },
         )
     if method == "ping":

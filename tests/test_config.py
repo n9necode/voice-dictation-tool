@@ -2,8 +2,8 @@ import bootstrap  # noqa: F401
 
 import unittest
 
-from kimi_voice.config import Settings
-from kimi_voice.errors import ConfigError
+from voice_dictation_tool.config import Settings
+from voice_dictation_tool.errors import ConfigError
 
 
 class ConfigTests(unittest.TestCase):

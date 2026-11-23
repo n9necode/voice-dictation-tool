@@ -29,7 +29,7 @@ def plugin_root() -> Path:
 
 def pack_plugin(root: Path | None = None, dest: Path | None = None) -> Path:
     source = root or plugin_root()
-    output = dest or (source / "dist" / "kimi-voice.zip")
+    output = dest or (source / "dist" / "voice-dictation-tool.zip")
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         for name in INCLUDE:

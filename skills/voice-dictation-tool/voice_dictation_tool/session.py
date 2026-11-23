@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from kimi_voice.errors import ListenEnded
-from kimi_voice.stream import (
+from voice_dictation_tool.errors import ListenEnded
+from voice_dictation_tool.stream import (
     assistant_message,
     flush_sentence,
     is_stop,

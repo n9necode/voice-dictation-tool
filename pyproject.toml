@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "kimi-voice"
+name = "voice-dictation-tool"
 version = "0.1.0"
 description = "Voice plugin for talking with the Kimi K3 model"
 readme = "README.md"
@@ -13,10 +13,10 @@ license = "MIT"
 keywords = ["kimi", "kimi-k3", "voice", "speech"]
 
 [project.scripts]
-kimi-voice = "kimi_voice.cli:main"
+voice-dictation-tool = "voice_dictation_tool.cli:main"
 
 [tool.setuptools]
-package-dir = {"" = "skills/kimi-voice"}
+package-dir = {"" = "skills/voice-dictation-tool"}
 
 [tool.setuptools.packages.find]
-where = ["skills/kimi-voice"]
+where = ["skills/voice-dictation-tool"]

@@ -7,9 +7,9 @@ import urllib.error
 import urllib.request
 from collections.abc import Iterator
 
-from kimi_voice.config import Settings
-from kimi_voice.errors import KimiAPIError
-from kimi_voice.stream import StreamPiece, iter_pieces
+from voice_dictation_tool.config import Settings
+from voice_dictation_tool.errors import KimiAPIError
+from voice_dictation_tool.stream import StreamPiece, iter_pieces
 
 
 def build_request(settings: Settings, messages: list[dict]) -> urllib.request.Request:

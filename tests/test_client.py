@@ -4,9 +4,9 @@ import io
 import unittest
 import urllib.error
 
-from kimi_voice.client import KimiClient, build_request
-from kimi_voice.config import Settings
-from kimi_voice.errors import ConfigError, KimiAPIError
+from voice_dictation_tool.client import KimiClient, build_request
+from voice_dictation_tool.config import Settings
+from voice_dictation_tool.errors import ConfigError, KimiAPIError
 
 
 SECRET = "secret-key-should-not-leak"

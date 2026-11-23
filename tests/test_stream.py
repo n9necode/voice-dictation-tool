@@ -2,7 +2,7 @@ import bootstrap  # noqa: F401
 
 import unittest
 
-from kimi_voice.stream import (
+from voice_dictation_tool.stream import (
     assistant_message,
     flush_sentence,
     is_stop,
