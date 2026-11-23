@@ -12,7 +12,7 @@ Runs on:
 Speech recognition and the service worker require a secure context (HTTPS) or `localhost`. Serve this folder over HTTP:
 
 ```powershell
-cd web
+cd docs
 python -m http.server 8000
 ```
 
