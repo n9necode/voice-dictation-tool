@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Voice Chat</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 12px; }
+    button { margin-right: 8px; margin-top: 8px; }
+    #provider, #apiKey { width: 100%; box-sizing: border-box; margin-top: 8px; }
+    #log { margin-top: 12px; }
+    .you { color: green; }
+    .ai { color: blue; }
+    .err { color: red; }
+  </style>
+</head>
+<body>
+  <h3>Voice Chat</h3>
+  <select id="provider">
+    <option value="gemini">Gemini</option>
+    <option value="deepseek">DeepSeek</option>
+    <option value="groq">Groq</option>
+    <option value="openrouter">OpenRouter</option>
+  </select>
+  <input id="apiKey" type="password" placeholder="Paste Gemini API key">
+  <button id="saveKey">Save key</button>
+  <button id="listen">🎤 Listen</button>
+  <button id="stop">Stop</button>
+  <div id="log"></div>
+  <script src="sidepanel.js"></script>
+</body>
+</html>

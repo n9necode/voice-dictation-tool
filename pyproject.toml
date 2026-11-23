@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kimi-voice"
+version = "0.1.0"
+description = "Voice plugin for talking with the Kimi K3 model"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "demar" }]
+license = "MIT"
+keywords = ["kimi", "kimi-k3", "voice", "speech"]
+
+[project.scripts]
+kimi-voice = "kimi_voice.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "skills/kimi-voice"}
+
+[tool.setuptools.packages.find]
+where = ["skills/kimi-voice"]
