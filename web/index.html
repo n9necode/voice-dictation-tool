@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1115">
+  <title>Voice Dictation Tool</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <style>
+    :root { --bg:#0f1115; --panel:#1a1d24; --text:#e8eaf0; --muted:#9aa3b2; --accent:#4f8cff; --err:#ff6b6b; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--text); }
+    header { padding: 20px 16px 8px; }
+    header h1 { margin:0; font-size:1.25rem; }
+    header p { margin:4px 0 0; color:var(--muted); font-size:0.9rem; }
+    main { padding:0 16px 24px; max-width:560px; margin:0 auto; }
+    .row { display:flex; gap:8px; margin:12px 0; flex-wrap:wrap; }
+    button { flex:1; min-width:80px; padding:12px; border:0; border-radius:10px; background:var(--panel); color:var(--text); font-size:1rem; cursor:pointer; }
+    button.primary { background:var(--accent); color:#fff; font-weight:600; }
+    button:active { transform:scale(0.98); }
+    button:disabled { opacity:0.5; cursor:default; }
+    textarea { width:100%; min-height:150px; padding:12px; border-radius:10px; border:1px solid #2a2f3a; background:var(--panel); color:var(--text); font-size:1rem; resize:vertical; }
+    #status { min-height:1.2em; color:var(--muted); font-size:0.9rem; margin:8px 2px; }
+    #status.err { color:var(--err); }
+    details { margin-top:16px; background:var(--panel); border-radius:10px; padding:12px; }
+    summary { cursor:pointer; font-weight:600; }
+    .field { margin-top:10px; }
+    .field label { display:block; font-size:0.85rem; color:var(--muted); margin-bottom:4px; }
+    select, input[type=password] { width:100%; padding:10px; border-radius:8px; border:1px solid #2a2f3a; background:#10131a; color:var(--text); font-size:1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Voice Dictation Tool</h1>
+    <p>Dictate &rarr; clean up &rarr; copy. Works on Windows &amp; Android.</p>
+  </header>
+  <main>
+    <div class="row">
+      <button id="listen" class="primary">&#127908; Dictate</button>
+      <button id="stop">Stop</button>
+    </div>
+    <textarea id="output" placeholder="Your dictated text appears here&hellip;"></textarea>
+    <div id="status"></div>
+    <div class="row">
+      <button id="clean">&#10024; Clean up</button>
+      <button id="copy">&#128203; Copy</button>
+      <button id="speak">&#128266; Speak</button>
+      <button id="clear">&#128465; Clear</button>
+    </div>
+    <details id="settings">
+      <summary>Settings</summary>
+      <div class="field">
+        <label for="provider">Cleanup provider</label>
+        <select id="provider"></select>
+      </div>
+      <div class="field">
+        <label for="apiKey">API key</label>
+        <input id="apiKey" type="password" placeholder="Paste API key">
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button id="saveKey">Save key</button>
+      </div>
+    </details>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
